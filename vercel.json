@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/(.*\\.(mp4|m3u8|ts|webm))",
+      "source": "/herovideo.mp4",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(jpg|jpeg|png|webp|svg|gif))",
+      "source": "/bookbg.jpg",
       "headers": [
         {
           "key": "Cache-Control",
