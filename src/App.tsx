@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowUpRight, Play, Feather, Sparkles, Waves, Shield } from 'lucide-react';
+import { ArrowUpRight, Feather, Sparkles, Waves, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BlurText } from './components/BlurText';
 import { VideoBackground } from './components/VideoBackground';
