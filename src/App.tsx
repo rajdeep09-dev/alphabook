@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowUpRight, Feather, Sparkles, Waves, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BlurText } from './components/BlurText';
@@ -8,6 +8,16 @@ import { Marquee } from './components/Marquee';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Strictly detect mobile operating systems regardless of "Desktop Mode" browser requests
+    const checkMobile = () => {
+      const ua = navigator.userAgent || navigator.vendor || (window as any).opera;
+      return /android/i.test(ua) || /iPad|iPhone|iPod/.test(ua);
+    };
+    setIsMobile(checkMobile());
+  }, []);
 
   return (
     <>
@@ -61,18 +71,21 @@ function App() {
       <section className="relative w-full min-h-[100svh] flex flex-col justify-start pt-[12svh] md:pt-[15svh] items-center overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-          <VideoBackground 
-            src="/herovideo.mp4"
-            poster="/bookbg.jpg"
-            className="opacity-100 pointer-events-none select-none bg-[#0A1008] block md:hidden"
-            videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
-          />
-          <VideoBackground 
-            src="/herovideodesk.mp4"
-            poster="/herodesk.jpg"
-            className="opacity-100 pointer-events-none select-none bg-[#0A1008] hidden md:block"
-            videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
-          />
+          {isMobile ? (
+            <VideoBackground 
+              src="/herovideo.mp4"
+              poster="/bookbg.jpg"
+              className="opacity-100 pointer-events-none select-none bg-[#0A1008]"
+              videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
+            />
+          ) : (
+            <VideoBackground 
+              src="/herovideodesk.mp4"
+              poster="/herodesk.jpg"
+              className="opacity-100 pointer-events-none select-none bg-[#0A1008]"
+              videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
+            />
+          )}
           {/* Extremely subtle darkening only for readability, removed heavy transitions */}
           <div className="absolute inset-0 bg-black/5 z-[1]" />
         </div>
