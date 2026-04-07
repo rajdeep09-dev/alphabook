@@ -64,7 +64,13 @@ function App() {
           <VideoBackground 
             src="/herovideo.mp4"
             poster="/bookbg.jpg"
-            className="opacity-100 pointer-events-none select-none bg-[#0A1008]"
+            className="opacity-100 pointer-events-none select-none bg-[#0A1008] block md:hidden"
+            videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
+          />
+          <VideoBackground 
+            src="/herovideodesk.mp4"
+            poster="/herodesk.jpg"
+            className="opacity-100 pointer-events-none select-none bg-[#0A1008] hidden md:block"
             videoClassName="object-cover object-[center_60%] pointer-events-none select-none"
           />
           {/* Extremely subtle darkening only for readability, removed heavy transitions */}
