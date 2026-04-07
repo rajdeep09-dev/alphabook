@@ -14,7 +14,14 @@ function App() {
     // Strictly detect mobile operating systems regardless of "Desktop Mode" browser requests
     const checkMobile = () => {
       const ua = navigator.userAgent || navigator.vendor || (window as any).opera;
-      return /android/i.test(ua) || /iPad|iPhone|iPod/.test(ua);
+      const isMobileUA = /android/i.test(ua) || /iPad|iPhone|iPod/.test(ua);
+      
+      // Defeat "Desktop Site" UA spoofing by checking hardware capabilities
+      const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+      const isPortrait = window.screen.width < window.screen.height;
+      const isSpoofedMobile = hasTouch && isPortrait;
+      
+      return isMobileUA || isSpoofedMobile;
     };
     setIsMobile(checkMobile());
   }, []);
