@@ -48,7 +48,7 @@ function App() {
           </motion.div>
         </div>
         
-        <div className="hidden md:flex transparent-glass rounded-full px-8 py-3 items-center gap-10 pointer-events-auto shadow-[0_0_20px_rgba(0,0,0,0.05)]">
+        <div className="hidden md:flex border border-foreground/20 bg-background/40 backdrop-blur-md rounded-full px-8 py-3 items-center gap-10 pointer-events-auto shadow-[0_0_20px_rgba(0,0,0,0.1)]">
           {['Story', 'The Craft', 'Elements', 'Reviews', 'Connect'].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors tracking-wide">
               {item}
