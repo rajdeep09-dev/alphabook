@@ -1,4 +1,4 @@
-/* src/components/FallingLeaves.css */
+/* src/components/ShinyStars.css */
 .materials-container {
     position: absolute;
     inset: 0;
@@ -6,37 +6,42 @@
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    mix-blend-mode: screen;
+    /* Blend with green bioluminescence */
+    mix-blend-mode: lighten;
 }
 
 .mote {
     position: absolute;
-    top: -10vh; /* Starts safely above the viewport */
+    top: -10vh; 
     border-radius: 50%;
-    background: #E8E4DF;
-    box-shadow: 0 0 12px 2px rgba(232, 228, 223, 0.5);
+    /* Use the Bioluminescent Primary Green */
+    background: #A3E635; 
+    
+    /* Green-tinted glow */
+    box-shadow: 0 0 6px 2px rgba(163, 230, 53, 0.4);
+    
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    opacity: 0; /* Starts hidden, fades in via keyframes */
+    opacity: 0; 
 }
 
 @keyframes fall-mote-1 {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    10% { opacity: var(--mote-opacity); }
-    90% { opacity: var(--mote-opacity); }
-    100% { transform: translate3d(-4vw, 120vh, 0); opacity: 0; }
+    15% { opacity: var(--mote-opacity); }
+    85% { opacity: var(--mote-opacity); }
+    100% { transform: translate3d(-3vw, 120vh, 0); opacity: 0; }
 }
 
 @keyframes fall-mote-2 {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    10% { opacity: var(--mote-opacity); }
-    90% { opacity: var(--mote-opacity); }
-    100% { transform: translate3d(5vw, 120vh, 0); opacity: 0; }
+    15% { opacity: var(--mote-opacity); }
+    85% { opacity: var(--mote-opacity); }
+    100% { transform: translate3d(4vw, 120vh, 0); opacity: 0; }
 }
 
 @keyframes fall-mote-3 {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    10% { opacity: var(--mote-opacity); }
-    90% { opacity: var(--mote-opacity); }
-    100% { transform: translate3d(-2vw, 120vh, 0); opacity: 0; }
+    15% { opacity: var(--mote-opacity); }
+    85% { opacity: var(--mote-opacity); }
+    100% { transform: translate3d(-1vw, 120vh, 0); opacity: 0; }
 }

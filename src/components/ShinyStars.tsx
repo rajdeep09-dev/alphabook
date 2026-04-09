@@ -3,16 +3,17 @@ import "./ShinyStars.css";
 
 export function ShinyStars() {
   const motes = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => {
-      // Very small, subtle glowing particles
-      const size = 1 + Math.random() * 4; 
+    // A clean, modest amount of motes to look minimal but alive
+    return Array.from({ length: 30 }).map((_, i) => {
+      // Very small, subtle particles
+      const size = 1 + Math.random() * 2; 
       const left = Math.random() * 100;
       // Slow, elegant falling speeds
-      const animationDuration = 20 + Math.random() * 20; 
-      // Negative delay means the animation is already running (fills the screen on load)
+      const animationDuration = 20 + Math.random() * 30; 
+      // Fills the screen immediately
       const animationDelay = Math.random() * 40; 
-      // Very faint opacity (overlay material)
-      const opacity = 0.15 + Math.random() * 0.35; 
+      // Faint opacity, just enough to catch the eye
+      const opacity = 0.1 + Math.random() * 0.2; 
       
       const swayType = Math.floor(Math.random() * 3) + 1;
       

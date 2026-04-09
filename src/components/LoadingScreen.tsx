@@ -12,12 +12,10 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0);
   const onCompleteRef = useRef(onComplete);
 
-  // Keep ref up to date
   useEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
-  // Word cycling logic (0 -> 1 -> 2)
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prev) => {
@@ -27,12 +25,11 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         clearInterval(interval);
         return prev;
       });
-    }, 1100); // Slightly slower for a more poetic feel
+    }, 1100);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Counter logic (0 -> 100 over 3.3s to match the slower word cycle)
   useEffect(() => {
     let startTime: number | null = null;
     let animationFrameId: number;
@@ -47,7 +44,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       if (currentProgress < 100) {
         animationFrameId = requestAnimationFrame(animate);
       } else {
-        // When 100% is reached, wait 600ms then call onComplete for a gentle pause
         setTimeout(() => {
           onCompleteRef.current();
         }, 600);
@@ -61,26 +57,24 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background text-foreground"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#020602] text-[#FFFFFF]"
       exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
       transition={{ duration: 1.5, ease: "easeInOut" }}
     >
-      {/* Element 1: Label */}
       <motion.div
-        className="absolute top-8 left-8 md:top-12 md:left-12 text-xs md:text-sm text-foreground/50 uppercase tracking-[0.3em]"
+        className="absolute top-8 left-8 md:top-12 md:left-12 text-xs md:text-sm text-[#A3E635]/50 uppercase tracking-[0.3em]"
         initial={{ opacity: 0, filter: 'blur(10px)' }}
         animate={{ opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 1, delay: 0.2 }}
       >
-        Alpha Studio
+        Bioluminescence
       </motion.div>
 
-      {/* Element 2: Rotating Words */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.span
             key={wordIndex}
-            className="text-4xl md:text-6xl lg:text-7xl font-heading italic text-foreground/90"
+            className="text-4xl md:text-6xl lg:text-7xl font-heading italic text-[#FFFFFF]/90"
             initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -15, filter: 'blur(10px)' }}
@@ -91,9 +85,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </AnimatePresence>
       </div>
 
-      {/* Element 3: Counter */}
       <motion.div
-        className="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-6xl md:text-8xl lg:text-9xl font-heading text-foreground/90 tabular-nums"
+        className="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-6xl md:text-8xl lg:text-9xl font-heading text-[#A3E635]/90 tabular-nums"
         initial={{ opacity: 0, filter: 'blur(10px)' }}
         animate={{ opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 1, delay: 0.2 }}
@@ -101,13 +94,12 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {Math.round(progress).toString().padStart(3, '0')}
       </motion.div>
 
-      {/* Element 4: Progress Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-foreground/10">
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#A3E635]/10">
         <motion.div
           className="h-full origin-left"
           style={{
-            background: "linear-gradient(90deg, transparent 0%, rgba(232, 228, 223, 0.8) 100%)",
-            boxShadow: "0 0 10px rgba(232, 228, 223, 0.4)",
+            background: "linear-gradient(90deg, transparent 0%, #A3E635 100%)",
+            boxShadow: "0 0 15px #A3E635",
             scaleX: progress / 100
           }}
           initial={{ scaleX: 0 }}
